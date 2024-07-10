@@ -10,5 +10,8 @@
     "gnome"
   ],
   "author": "Max Normand",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
 }
