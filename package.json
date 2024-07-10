@@ -1,0 +1,14 @@
+{
+  "name": "gnome-your-garden",
+  "version": "1.0.0",
+  "description": "A gardening mangement app to demo node js knowledge",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "gnome"
+  ],
+  "author": "Max Normand",
+  "license": "ISC"
+}
