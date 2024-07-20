@@ -1,7 +1,9 @@
-import './App.css';
+// import './App.css';
+import 'bulma/css/bulma.css';
 import { useEffect, useState } from "react";
 import axios from 'axios';
 
+// TODO: this whole page will be the welcome page
 function App() {
   const [apiResponse, setApiResponse] = useState('')
 
@@ -21,11 +23,46 @@ function App() {
   }, [])
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>{apiResponse}</p>
-      </header>
-    </div>
+    <div>
+    <nav className="navbar is-primary">
+      <div className="container">
+        <div className="navbar-brand">
+          <a className="navbar-item" href="/">
+            Our Website
+          </a>
+        </div>
+
+        <div className="navbar-menu">
+          <div className="navbar-end">
+            <a className="navbar-item" href="/about">
+              About
+            </a>
+            <a className="navbar-item" href="/services">
+              Services
+            </a>
+            <a className="navbar-item" href="/contact">
+              Contact
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <section className="hero is-primary is-fullheight">
+      <div className="hero-body">
+        <div className="container has-text-centered">
+          <h1 className="title">
+            Welcome to Our Website!
+          </h1>
+          <h2 className="subtitle">
+            <p className="has-text-centered">{apiResponse}</p>
+          </h2>
+          <button className="button is-light">Learn More</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
   );
 }
 
