@@ -28,20 +28,20 @@ function App() {
       <div className="container">
         <div className="navbar-brand">
           <a className="navbar-item" href="/">
-            Our Website
+            {/* Our Website */}
+            {/* TODO: will be site logo and link back to product */}
+            {/* find picture of gnome logo */}
+            Home
           </a>
         </div>
 
         <div className="navbar-menu">
           <div className="navbar-end">
             <a className="navbar-item" href="/about">
-              About
+              Your Plants
             </a>
             <a className="navbar-item" href="/services">
-              Services
-            </a>
-            <a className="navbar-item" href="/contact">
-              Contact
+              Profile
             </a>
           </div>
         </div>

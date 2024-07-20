@@ -6,6 +6,7 @@ const port = 8000
 // TODO: in general how can this be more secure?
 app.use(cors())
 
+// TODO: need to extract this to its own router
 app.get('/plants', (req, res) => {
   // TODO: set this up with basic json data
   // create some basic JSON data for plants
@@ -25,4 +26,6 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
       console.log('server listening on port 8000')
 })
+
+// TODO: begin to setup github projects stuff
 
