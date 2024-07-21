@@ -8,7 +8,6 @@ function SignupPage() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
-	// function to handle form submission
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
@@ -18,8 +17,6 @@ function SignupPage() {
 				email,
 				password
 			});
-			// TODO: need to handle what happens when the response is successful
-			// we will want to log the user in and redirect to the plants page or something
 			console.log(response.data);
 			// TODO: need to figure out how to use this throughout the app for auth
 			localStorage.setItem("token", response.data.token);
@@ -54,7 +51,6 @@ function SignupPage() {
 					<div className="field">
 						<label className="label">Last Name</label>
 						<div className="control">
-							{/* <input className="input" type="text" placeholder="Name" /> */}
 							<input
 								className="input"
 								type="text"
@@ -67,7 +63,6 @@ function SignupPage() {
 					<div className="field">
 						<label className="label">Email</label>
 						<div className="control">
-							{/* <input className="input" type="email" placeholder="Email" /> */}
 							<input
 								className="input"
 								type="email"
@@ -80,7 +75,6 @@ function SignupPage() {
 					<div className="field">
 						<label className="label">Password</label>
 						<div className="control">
-							{/* <input className="input" type="password" placeholder="Password" /> */}
 							<input
 								className="input"
 								type="password"
