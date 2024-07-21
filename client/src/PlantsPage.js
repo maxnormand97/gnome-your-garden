@@ -1,37 +1,43 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import NavBar from "./components/navbar";
 
 function PlantsPage() {
+	const [plants, setPlants] = useState([]);
+	useEffect(() => {
+		// call to fetch plants from the server
+		axios.get("http://localhost:8000/plants")
+			.then((res) => {
+				setPlants(res.data);
+				console.log(res.data);
+			})
+			.catch((err) => {
+				console.log(err);
+			}
+		);
+	}, []);
     return (
-    	<div className="container">
-				<h1 className="title">
-           Plants Page!
-          </h1>
-        <div className="columns">
-          <div className="column">
-            <div className="card">
-              <div className="card-image">
-                <figure className="image is-4by3">
-									insert image here
-                </figure>
-              </div>
-              <div className="card-content">
-                <div className="media">
-                  <div className="media-content">
-                    <p className="title is-4">Card title</p>
-                    <p className="subtitle is-6">@username</p>
-                  </div>
-                </div>
-                <div className="content">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  <br />
-                  <time dateTime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-                </div>
-              </div>
-            </div>
-          </div>
-          {/* Repeat the .column div for more cards */}
-        </div>
-      </div>
+			<>
+				<NavBar />
+				<div className="container">
+					<h1 className="title">
+						Plants Page!
+					</h1>
+					<div className="columns">
+						{/* TODO: might want to think of downstate for this... */}
+						{plants.map((plant) => (
+							<div className="column" key={plant._id}>
+								<div className="card">
+									<div className="card-content">
+										<p className="title">{plant.name}</p>
+										<p className="subtitle">{plant.description}</p>
+									</div>
+								</div>
+							</div>
+						))}
+					</div>
+					</div>
+			</>
     )
 }
 
