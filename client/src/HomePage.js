@@ -1,5 +1,6 @@
 import React from "react";
 import NavBar from "./components/navbar";
+import { Link } from 'react-router-dom';
 
 function HomePage() {
   return (
@@ -14,7 +15,10 @@ function HomePage() {
             </h1>
             <h2 className="subtitle">
             </h2>
-            <button className="button is-light">Learn More</button>
+            <div className="buttons is-flex is-justify-content-center">
+              <Link to="/signup" className="button is-light">Sign Up</Link>
+              <Link to="/login" className="button is-light">Log In</Link>
+            </div>
           </div>
         </div>
       </section>
