@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import NavBar from "./components/navbar";
+import Plant from "./components/plant";
 
 function PlantsPage() {
 	const [plants, setPlants] = useState([]);
@@ -14,7 +15,6 @@ function PlantsPage() {
       })
 			.then((res) => {
 				setPlants(res.data);
-				console.log(res.data);
 			})
 			.catch((err) => {
 				console.log(err);
@@ -26,24 +26,17 @@ function PlantsPage() {
     return (
 			<>
 				<NavBar />
-				<div className="container">
-					<h1 className="title">
-						Plants Page!
+				<div className="container mt-4">
+					<h1 className="title mb-4">
+						Plant library
 					</h1>
-					<div className="columns">
-						{/* TODO: might want to think of downstate for this... */}
+					{/* TODO: might want to think of downstate for this... */}
+					<div className="columns is-multiline">
 						{plants.map((plant) => (
-							<div className="column" key={plant._id}>
-								<div className="card">
-									<div className="card-content">
-										<p className="title">{plant.name}</p>
-										<p className="subtitle">{plant.description}</p>
-									</div>
-								</div>
-							</div>
+              <Plant plant={plant} key={plant._id} />
 						))}
 					</div>
-					</div>
+				</div>
 			</>
     )
 }
