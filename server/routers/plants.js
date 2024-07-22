@@ -1,11 +1,12 @@
 const express = require('express');
 const Plant = require('../models/plants');
+const auth = require('../middleware/auth');
 require('../db/mongoose');
 const router = new express.Router();
 
 // TODO: make this async
 // GET: all plants
-router.get('/plants', (req, res) => {
+router.get('/plants', auth, (req, res) => {
     Plant.find({})
       .then((plants) => {
         res.send(plants)
@@ -16,8 +17,7 @@ router.get('/plants', (req, res) => {
 });
 
   // TODO: make this async
-  router.post('/plants', (req, res) => {
-    console.log(req.body)
+  router.post('/plants', auth, (req, res) => {
     const plant = new Plant(req.body)
     plant.save()
       .then(() => {

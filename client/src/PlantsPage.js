@@ -4,15 +4,22 @@ import NavBar from "./components/navbar";
 
 function PlantsPage() {
 	const [plants, setPlants] = useState([]);
+  const token = localStorage.getItem('token');
 	useEffect(() => {
 		// call to fetch plants from the server
-		axios.get("http://localhost:8000/plants")
+		axios.get("http://localhost:8000/plants", {
+        headers: {
+          'Authorization': `Bearer ${token}` // Include the auth token in the Authorization header
+        }
+      })
 			.then((res) => {
 				setPlants(res.data);
 				console.log(res.data);
 			})
 			.catch((err) => {
 				console.log(err);
+        // redirect to login page for now
+        window.location.href = "/login";
 			}
 		);
 	}, []);
