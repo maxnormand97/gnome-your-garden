@@ -4,7 +4,8 @@
   "description": "A gardening mangement app to demo node js knowledge",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "NODE_ENV=development nodemon server/index.js"
   },
   "keywords": [
     "gnome"
