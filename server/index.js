@@ -1,7 +1,9 @@
+// TODO: this will have to change based on the ENV right?
+require('dotenv').config({ path: './.env.development' });
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const port = 8000
+const port = process.env.PORT || 8000;
 require('./db/mongoose')
 const plantRouter = require('./routers/plants')
 const userRouter = require('./routers/users')

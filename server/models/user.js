@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+require('dotenv').config(); // TODO: see if you can remove cause its at the base of the express app...
 
 
 const userSchema = new mongoose.Schema({
@@ -54,8 +55,9 @@ const userSchema = new mongoose.Schema({
 userSchema.methods.generateAuthToken = async function () {
 	const user = this;
 	// TODO: need to extract this secret to a config file
+  console.log('process.env.JWT_SECRET', process.env.JWT_SECRET);
 	const token = jwt.sign({ _id: user._id.toString
-	()}, 'mysecret');
+	()}, process.env.JWT_SECRET);
 	user.tokens = user.tokens.concat({ token });
 	await user.save();
 	return token;
