@@ -23,7 +23,7 @@ function NavBar() {
     });
   }
     return (
-      <nav className="navbar is-primary">
+      <nav className="navbar is-dark">
         <div className="container">
           <div className="navbar-brand">
             <a className="navbar-item" href="/">

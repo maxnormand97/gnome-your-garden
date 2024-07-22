@@ -5,8 +5,22 @@ const plantSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    description: {
+        type: String,
+        required: true,
+    },
     light: String,
     water: String,
+    temperature: String,
+    soilType: String,
+    pruning: String,
+    fertilization: String,
+    habitat: String,
+    difficulty: {
+        type: String,
+        enum: ['Easy', 'Medium', 'Hard'], // Enum declaration
+        default: 'Medium'
+    },
     userIds: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
