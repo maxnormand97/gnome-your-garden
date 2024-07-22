@@ -11,9 +11,10 @@ function HomePage() {
         <div className="hero-body">
           <div className="container has-text-centered">
             <h1 className="title">
-              Welcome to Our Website!
+              Gnome your Garden!
             </h1>
             <h2 className="subtitle">
+              What do you gnome about your plants?
             </h2>
             <div className="buttons is-flex is-justify-content-center">
               <Link to="/signup" className="button is-light">Sign Up</Link>
