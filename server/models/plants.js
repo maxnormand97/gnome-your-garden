@@ -7,6 +7,10 @@ const plantSchema = new mongoose.Schema({
     },
     light: String,
     water: String,
+    userIds: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }]
 });
 
 const Plant = mongoose.model('Plant', plantSchema);

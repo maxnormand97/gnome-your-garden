@@ -42,7 +42,12 @@ const userSchema = new mongoose.Schema({
 				type: String,
 				required: true
 		}
-	}]
+	}],
+  // many to many relationship with plants
+  plantIds: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Plant'
+  }]
 });
 
 // Instance method
