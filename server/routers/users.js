@@ -1,5 +1,6 @@
 const express = require('express');
 const User = require('../models/user');
+const Plant = require('../models/plants');
 const auth = require('../middleware/auth');
 require('../db/mongoose');
 const router = new express.Router();
@@ -38,6 +39,31 @@ router.post('/users/logout', auth, async (req, res) => {
     } catch (error) {
         res.status(500).send()
     }
+});
+
+// POST add a plant to collection
+router.post('/users/add_plant/:plant_id', auth, async (req, res) => {
+// based on the plant ID in the URL, find the plant
+const plant = await Plant.findById(req.params.plant_id);
+// add the plant to the user's plantIds array
+// check if plant is already in the user's plantIds array
+const plantIds = req.user.plantIds.map(plantId => plantId.toString());
+if (plantIds.includes(plant._id.toString())) {
+    return res.status(400).send({ error: 'Plant already added' });
+}
+req.user.plantIds.push(plant._id);
+// save the user
+await req.user.save();
+res.send(req.user);
+})
+
+  // GET: get all plants for a user
+router.get('/users/plants', auth, async (req, res) => {
+    // based on the users plantIds array, find all the plants
+    const plants = await Plant.find({
+        '_id': { $in: req.user.plantIds }
+    });
+    res.send(plants);
 });
 
 module.exports = router;
