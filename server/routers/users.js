@@ -1,5 +1,6 @@
 const express = require('express');
 const User = require('../models/user');
+const auth = require('../middleware/auth');
 require('../db/mongoose');
 const router = new express.Router();
 
@@ -23,6 +24,19 @@ router.post('/users/login', async (req, res) => {
         res.send({ user, token })
     } catch (error) {
         res.status(400).send()
+    }
+});
+
+// POST: logout a user
+router.post('/users/logout', auth, async (req, res) => {
+    try {
+        req.user.tokens = req.user.tokens.filter((token) => {
+            return token.token !== req.token
+        })
+        await req.user.save()
+        res.send()
+    } catch (error) {
+        res.status(500).send()
     }
 });
 
