@@ -17,7 +17,8 @@ router.get('/plants', auth, (req, res) => {
 });
 
   // TODO: make this async
-  router.post('/plants', auth, (req, res) => {
+  // TEST ROUTE
+  router.post('/plants', (req, res) => {
     const plant = new Plant(req.body)
     plant.save()
       .then(() => {
@@ -25,6 +26,21 @@ router.get('/plants', auth, (req, res) => {
       })
       .catch((error) => {
         res.status(400).send(error)
+      })
+  })
+
+  // GET plant details
+  router.get('/plants/:id', auth, (req, res) => {
+    const _id = req.params.id
+    Plant.findById(_id)
+      .then((plant) => {
+        if (!plant) {
+          return res.status(404).send()
+        }
+        res.send(plant)
+      })
+      .catch((error) => {
+        res.status(500).send()
       })
   })
 
