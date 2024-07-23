@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 
 function Plant({ plant }) {
   return (
@@ -19,7 +20,10 @@ function Plant({ plant }) {
           </div>
         </div>
         <footer className="card-footer">
-          <button className="card-footer-item button is-secondary">Learn More</button>
+          {/* <button className="card-footer-item button is-secondary">Learn More</button> */}
+          {/* button should go to plant details page */}
+          {/* <a href={`/plants/${plant._id}`} className="card-footer-item button is-secondary">Learn More</a> */}
+          <Link to={`/plants/${plant._id}`} className="card-footer-item button is-secondary">Learn More</Link>
           {/* TODO: post req to joins table */}
           {/* TODO: need state to know if to remove from garden */}
           <button className="card-footer-item button is-primary is-outlined">Add to Garden</button>
