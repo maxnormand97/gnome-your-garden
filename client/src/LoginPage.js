@@ -17,7 +17,10 @@ function LoginPage() {
 				password
 			});
 			console.log(response.data);
+			// TODO: okay for now but need to make more secure and handle expiration of token
 			localStorage.setItem("token", response.data.token);
+			// Using local storage instead of redux for now
+			localStorage.setItem("user", JSON.stringify(response.data.user));
 			window.location.href = "/plants";
 		}
 		catch (error) {

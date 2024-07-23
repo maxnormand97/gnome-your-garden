@@ -49,6 +49,17 @@ const userSchema = new mongoose.Schema({
   }]
 });
 
+// serialize user data
+userSchema.methods.toJSON = function () {
+    const user = this
+    // create a dummy object of the user instance
+    const userObject = user.toObject()
+    // remove the things we don't want the client to see
+    delete userObject.password
+    delete userObject.tokens
+    return userObject
+}
+
 // Instance method
 userSchema.methods.generateAuthToken = async function () {
 	const user = this;

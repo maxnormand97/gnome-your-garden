@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 function NavBar() {
   // need to fire to users logout route
@@ -49,6 +50,7 @@ function NavBar() {
                   <a className="navbar-item" onClick={logout}>
                     Logout
                   </a>
+                  <Link to="/plants" className="navbar-item">Plants</Link>
                 </div>
               </div>
             </div>
