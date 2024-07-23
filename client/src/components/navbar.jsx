@@ -3,6 +3,7 @@ import axios from "axios";
 
 function NavBar() {
   // need to fire to users logout route
+  // console.log(process.env.REACT_APP_API_URL, 'base url')
   function logout() {
     const token = localStorage.getItem('token'); // Get the auth token from local storage
 
