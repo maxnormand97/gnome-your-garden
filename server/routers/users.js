@@ -43,18 +43,23 @@ router.post('/users/logout', auth, async (req, res) => {
 
 // POST add a plant to collection
 router.post('/users/add_plant/:plant_id', auth, async (req, res) => {
-// based on the plant ID in the URL, find the plant
-const plant = await Plant.findById(req.params.plant_id);
-// add the plant to the user's plantIds array
-// check if plant is already in the user's plantIds array
-const plantIds = req.user.plantIds.map(plantId => plantId.toString());
-if (plantIds.includes(plant._id.toString())) {
-    return res.status(400).send({ error: 'Plant already added' });
-}
-req.user.plantIds.push(plant._id);
-// save the user
-await req.user.save();
-res.send(req.user);
+    // based on the plant ID in the URL, find the plant
+    const plant = await Plant.findById(req.params.plant_id);
+    // add the plant to the user's plantIds array
+    // check if plant is already in the user's plantIds array
+    const plantIds = req.user.plantIds.map(plantId => plantId.toString());
+    if (plantIds.includes(plant._id.toString())) {
+        return res.status(400).send({ error: 'Plant already added' });
+    }
+    req.user.plantIds.push(plant._id);
+    // add userId to the plant's userIds array
+    // only is the user is not already in the userIds array
+    if (!plant.userIds.includes(req.user._id)) {
+        plant.userIds.push(req.user._id);
+    }
+    // save the user
+    await req.user.save();
+    res.send(req.user);
 })
 
   // GET: get all plants for a user
