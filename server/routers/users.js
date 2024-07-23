@@ -68,13 +68,11 @@ router.post('/users/add_plant/:plant_id', auth, async (req, res) => {
     res.send(req.user);
 })
 
-  // GET: get all plants for a user
+  // GET: get all userPlants for a user
 router.get('/users/plants', auth, async (req, res) => {
     // based on the users plantIds array, find all the plants
-    const plants = await Plant.find({
-        '_id': { $in: req.user.plantIds }
-    });
-    res.send(plants);
+    const userPlants = await UserPlant.find({ userId: req.user._id });
+    res.send(userPlants);
 });
 
 module.exports = router;

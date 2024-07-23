@@ -31,7 +31,7 @@ describe('POST /users/login', () => {
   });
 });
 
-describe('GET /users/add_plant/:plant_id', () => {
+describe('POST /users/add_plant/:plant_id', () => {
   test('Should add a plant to the users plant collection', async () => {
     await request(app).post(`/users/add_plant/${plantOne._id}`).set('Authorization', `Bearer ${userOne.tokens[0].token}`).send().expect(200);
     const user = await User.findById(userOneId);
@@ -42,3 +42,10 @@ describe('GET /users/add_plant/:plant_id', () => {
   });
 });
 
+// TODO: update several tests with more robust scenarios
+describe('GET /users/plants', () => {
+  test('Should return a collection of plants the user has', async () => {
+    const response = await request(app).get('/users/plants').set('Authorization', `Bearer ${userOne.tokens[0].token}`).send().expect(200);
+    expect(response.body.length).toEqual(1);
+  });
+});
