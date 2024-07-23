@@ -3,11 +3,6 @@ const app = require('../app');
 const User = require('../models/user');
 const { userOne, userOneId, setupDatabase } = require('./fixtures/db');
 
-// beforeEach(async () => {
-//   await setupDatabase();
-//   // await new User(userOne).save();
-// });
-
 beforeEach(setupDatabase);
 
 describe('POST /users', () => {

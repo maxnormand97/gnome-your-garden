@@ -6,7 +6,6 @@ const { setupDatabase, userOne, plantOne } = require('./fixtures/db');
 
 beforeEach(setupDatabase);
 
-
 describe('POST /plants', () => {
     test('Should create a new plant', async () => {
       const testData = {
