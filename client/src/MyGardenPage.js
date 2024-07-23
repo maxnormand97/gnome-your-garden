@@ -81,7 +81,7 @@ function MyGardenPage() {
       <div className="columns is-multiline">
         {plants && plants.map(plant => (
           <div className="column is-one-third" key={plant._id}>
-            <UserPlant nickname={plant.nickname} plantId={plant.plantId} health={plant.health} />
+            <UserPlant nickname={plant.nickname} plantId={plant.plantId} health={plant.health} id={plant._id} />
           </div>
         ))}
       </div>
