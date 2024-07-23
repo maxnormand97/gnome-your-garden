@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 
@@ -33,6 +33,7 @@ function PlantDetailsPage() {
           </div>
         </div>
       </article>
+      <Link to="/plants" className="button is-primary">Back</Link>
     </div>
   );
 }
