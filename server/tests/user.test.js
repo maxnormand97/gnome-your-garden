@@ -1,7 +1,7 @@
 const request = require('supertest');
 const app = require('../app');
 const User = require('../models/user');
-const { userOne, userOneId, setupDatabase } = require('./fixtures/db');
+const { userOne, userOneId, plantOne, setupDatabase } = require('./fixtures/db');
 
 beforeEach(setupDatabase);
 
@@ -27,6 +27,14 @@ describe('POST /users/login', () => {
 
     const user = await User.findById(userOneId);
     expect(response.body.token).toBe(user.tokens[1].token);
+  });
+});
+
+describe('GET /users/add_plant/:plant_id', () => {
+  test('Should add a plant to the users plant collection', async () => {
+    await request(app).post(`/users/add_plant/${plantOne._id}`).set('Authorization', `Bearer ${userOne.tokens[0].token}`).send().expect(200);
+    const user = await User.findById(userOneId);
+    expect(user.plantIds[0]._id).toEqual(plantOne._id);
   });
 });
 
