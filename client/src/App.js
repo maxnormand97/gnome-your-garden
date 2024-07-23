@@ -6,6 +6,7 @@ import PlantsPage from "./PlantsPage";
 import SignupPage from "./SignupPage";
 import LoginPage from "./LoginPage";
 import PlantDetailsPage from "./PlantDetailsPage";
+import MyGardenPage from "./MyGardenPage";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/plants/:plantId" element={<PlantDetailsPage />} />
+        <Route path="/my-garden" element={<MyGardenPage />} />
       </Routes>
     </Router>
   );
