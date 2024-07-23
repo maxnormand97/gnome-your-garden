@@ -51,6 +51,7 @@ function NavBar() {
                     Logout
                   </a>
                   <Link to="/plants" className="navbar-item">Plants</Link>
+                  <Link to="/my-garden" className="navbar-item">My Garden</Link>
                 </div>
               </div>
             </div>
