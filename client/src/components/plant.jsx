@@ -42,11 +42,14 @@ function Plant({ plant }) {
         </div>
         <footer className="card-footer">
           <Link to={`/plants/${plant._id}`} className="card-footer-item button is-secondary">Learn More</Link>
-          {
+          {/* TODO: fix this up for new users with blank ids */}
+          {/* {
             user && user.plantIds.includes(plant._id) ?
             <button  className="card-footer-item button is-danger is-outlined">Remove from Garden</button> :
             <button onClick={addPlantToGarden} className="card-footer-item button is-primary is-outlined">Add to Garden</button>
-          }
+
+          } */}
+          <button onClick={addPlantToGarden} className="card-footer-item button is-primary is-outlined">Add to Garden</button>
         </footer>
       </div>
     </div>
