@@ -1,6 +1,7 @@
 const express = require('express');
 const User = require('../models/user');
 const Plant = require('../models/plants');
+const UserPlant = require('../models/userPlant');
 const auth = require('../middleware/auth');
 require('../db/mongoose');
 const router = new express.Router();
@@ -48,10 +49,15 @@ router.post('/users/add_plant/:plant_id', auth, async (req, res) => {
     // add the plant to the user's plantIds array
     // check if plant is already in the user's plantIds array
     const plantIds = req.user.plantIds.map(plantId => plantId.toString());
-    if (plantIds.includes(plant._id.toString())) {
-        return res.status(400).send({ error: 'Plant already added' });
+    if (!plantIds.includes(plant._id.toString())) {
+        req.user.plantIds.push(plant._id);
+        const userPlant = new UserPlant({
+            plantId: plant._id,
+            userId: req.user._id,
+            nickname: plant.name,
+        });
+        await userPlant.save();
     }
-    req.user.plantIds.push(plant._id);
     // add userId to the plant's userIds array
     // only is the user is not already in the userIds array
     if (!plant.userIds.includes(req.user._id)) {
