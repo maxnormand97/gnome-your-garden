@@ -12,7 +12,8 @@ function UserPlant(props) {
       </div>
       <footer className="card-footer">
         {/* TODO: fix styling its ugly */}
-        <a href="#" className="card-footer-item button is-primary is-outlined m-2">Status</a>
+        {/* <a href="#" className="card-footer-item button is-primary is-outlined m-2">Status</a> */}
+        <Link to={`/my-garden/${props.id}`} className="card-footer-item button is-primary is-outlined m-2">Status</Link>
         <Link to={`/plants/${props.plantId}`} className="card-footer-item m-2">Info</Link>
         <button  className="card-footer-item button is-danger is-outlined m-2">Remove</button>
       </footer>

@@ -75,4 +75,10 @@ router.get('/users/plants', auth, async (req, res) => {
     res.send(userPlants);
 });
 
+// GET: get a specific userPlant
+router.get('/users/plants/:userPlantId', auth, async (req, res) => {
+    const userPlant = await UserPlant.findById(req.params.userPlantId);
+    res.send(userPlant);
+});
+
 module.exports = router;

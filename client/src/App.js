@@ -7,6 +7,7 @@ import SignupPage from "./SignupPage";
 import LoginPage from "./LoginPage";
 import PlantDetailsPage from "./PlantDetailsPage";
 import MyGardenPage from "./MyGardenPage";
+import UserPlantDetailsPage from "./UserPlantDetailsPage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/plants/:plantId" element={<PlantDetailsPage />} />
         <Route path="/my-garden" element={<MyGardenPage />} />
+        <Route path="/my-garden/:userPlantId" element={<UserPlantDetailsPage />} />
       </Routes>
     </Router>
   );

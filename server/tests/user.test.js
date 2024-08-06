@@ -49,3 +49,9 @@ describe('GET /users/plants', () => {
     expect(response.body.length).toEqual(1);
   });
 });
+
+// TODO: finish setting this up, will need to update the fixtures/db.js file to create a userPlant
+// describe('GET /users/plants/:userPlantId', () => {
+//   test('Should return a user plant information', async () => {
+//   });
+// });
