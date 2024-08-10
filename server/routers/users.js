@@ -81,4 +81,18 @@ router.get('/users/plants/:userPlantId', auth, async (req, res) => {
     res.send(userPlant);
 });
 
+// PATCH: remove plant from plants array
+router.patch('/users/remove_plant/:plant_id', auth, async (req, res) => {
+    // based on the plant ID in the URL, find the plant
+    const plant = await Plant.findById(req.params.plant_id);
+    // remove the plant from the user's plantIds array
+    req.user.plantIds = req.user.plantIds.filter(plantId => plantId.toString() !== plant._id.toString());
+    // remove the user from the plant's userIds array
+    plant.userIds = plant.userIds.filter(userId => userId.toString() !== req.user._id.toString());
+    // needs to destroy the userPlant record right
+    await UserPlant.findOneAndDelete({ userId: req.user._id, plantId: plant._id });
+    await req.user.save();
+    res.send(req.user);
+});
+
 module.exports = router;
